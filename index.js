@@ -5,6 +5,7 @@ const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 const app = express();
 const socket = require("socket.io");
+const path = require("path");
 require("dotenv").config();
 
 app.use(cors());
@@ -26,12 +27,19 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, "public/build")));
+// Anything that doesn't match the above, send back index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "public/build/index.html"));
+});
+
 const server = app.listen(process.env.PORT || 8080, () =>
   console.log(`Server started on ${process.env.PORT}`)
 );
 const io = socket(server, {
   cors: {
-    origin: "https://chatting-with-drew.herokuapp.com",
+    origin: "https://chatting-with-drew.herokuapp.com/socket",
     // origin: "http://localhost:3000",
     credentials: true,
   },
