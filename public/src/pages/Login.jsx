@@ -30,10 +30,10 @@ export default function Login() {
   const validateForm = () => {
     const { username, password } = values;
     if (username === "") {
-      toast.error("Email and Password is required.", toastOptions);
+      toast.error("Username and Password is required.", toastOptions);
       return false;
     } else if (password === "") {
-      toast.error("Email and Password is required.", toastOptions);
+      toast.error("Username and Password is required.", toastOptions);
       return false;
     }
     return true;
@@ -66,8 +66,8 @@ export default function Login() {
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            <img src={Logo} alt="logo" />
-            <h1>snappy</h1>
+            {/* <img src={Logo} alt="logo" /> */}
+            <h1>Chatting With Drew</h1>
           </div>
           <input
             type="text"
@@ -77,7 +77,7 @@ export default function Login() {
             min="3"
           />
           <input
-            type="password"
+            type="text"
             placeholder="Password"
             name="password"
             onChange={(e) => handleChange(e)}

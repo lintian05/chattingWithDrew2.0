@@ -18,9 +18,7 @@ export default function Register() {
   };
   const [values, setValues] = useState({
     username: "",
-    email: "",
     password: "",
-    confirmPassword: "",
   });
 
   useEffect(() => {
@@ -34,29 +32,20 @@ export default function Register() {
   };
 
   const handleValidation = () => {
-    const { password, confirmPassword, username, email } = values;
-    if (password !== confirmPassword) {
-      toast.error(
-        "Password and confirm password should be same.",
-        toastOptions
-      );
-      return false;
-    } else if (username.length < 3) {
+    const { password, username} = values;
+    if (username.length < 3) {
       toast.error(
         "Username should be greater than 3 characters.",
         toastOptions
       );
       return false;
-    } else if (password.length < 8) {
+    } else if (password.length < 1) {
       toast.error(
-        "Password should be equal or greater than 8 characters.",
+        "Password should be equal or greater than 1 character.",
         toastOptions
       );
       return false;
-    } else if (email === "") {
-      toast.error("Email is required.", toastOptions);
-      return false;
-    }
+    } 
 
     return true;
   };
@@ -64,10 +53,9 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      const { email, username, password } = values;
+      const { username, password } = values;
       const { data } = await axios.post(registerRoute, {
         username,
-        email,
         password,
       });
 
@@ -89,8 +77,8 @@ export default function Register() {
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            <img src={Logo} alt="logo" />
-            <h1>snappy</h1>
+            {/* <img src={Logo} alt="logo" /> */}
+            <h1>Chatting With Drew</h1>
           </div>
           <input
             type="text"
@@ -99,21 +87,9 @@ export default function Register() {
             onChange={(e) => handleChange(e)}
           />
           <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="password"
+            type="text"
             placeholder="Password"
             name="password"
-            onChange={(e) => handleChange(e)}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="confirmPassword"
             onChange={(e) => handleChange(e)}
           />
           <button type="submit">Create User</button>

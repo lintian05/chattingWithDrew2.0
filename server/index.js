@@ -20,6 +20,7 @@ mongoose
   })
   .catch((err) => {
     console.log(err.message);
+    console.log("DB Connetion unSuccessfull");
   });
 
 app.use("/api/auth", authRoutes);
