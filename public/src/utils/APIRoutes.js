@@ -1,4 +1,4 @@
-export const host = process.env.HOST_URL;
+export const host = "http://www.chattingwithdrew.com";
 // export const host = "http://localhost:8080";
 export const loginRoute = `${host}/api/auth/login`;
 export const registerRoute = `${host}/api/auth/register`;
