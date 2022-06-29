@@ -39,7 +39,7 @@ const server = app.listen(process.env.PORT || 8080, () =>
 );
 const io = socket(server, {
   cors: {
-    origin: "https://chatting-with-drew.herokuapp.com/socket",
+    origin: process.env.SOCKET_URL,
     // origin: "http://localhost:3000",
     credentials: true,
   },
