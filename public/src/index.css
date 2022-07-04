@@ -12,11 +12,13 @@ input {
   font-family: "Josefin Sans", sans-serif;
 }
 
-body {
-  max-height: 100vh;
-  max-width: 100vw;
+html,body {
+  max-height: 100%;
+  max-width: 100%;
   overflow: hidden;
 }
+
+
 
 .Toastify__toast-theme--dark {
   background-color: #00000076 !important;

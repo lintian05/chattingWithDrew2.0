@@ -13,7 +13,9 @@ export default function Welcome() {
   }, []);
   return (
     <Container>
+      <div className="chat-header">
       <Logout />
+      </div>
       <img src={Robot} alt="" />
       <h1>
         Welcome, <span>{userName}!</span>

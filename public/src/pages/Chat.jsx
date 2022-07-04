@@ -62,22 +62,22 @@ export default function Chat() {
 }
 
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height:100vh;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
   align-items: center;
   background-color: #131324;
   .container {
-    height: 85vh;
-    width: 85vw;
+    display: flex;
+    justify-content: center;
+    height: 100%;
     background-color: #00000076;
-    display: grid;
-    grid-template-columns: 25% 75%;
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
-      grid-template-columns: 35% 65%;
-    }
+    // display: grid;
+    // grid-template-columns: 25% 75%;
+    // @media screen and (min-width: 720px) and (max-width: 1080px) {
+    //   grid-template-columns: 35% 65%;
+    // }
   }
 `;
