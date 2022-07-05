@@ -67,17 +67,14 @@ const Container = styled.div`
   background-color: #080420;
   .brand {
     display: flex;
-    flex-grow: .5;
+    flex-grow: 1;
     flex-flow: wrap;
     margin-bottom: 1rem;
     background-color: #0d0d30;
     align-items: center;
     justify-content: center;
-    img {
-      height: 2rem;
-    }
     h3 {
-      padding: 0.6rem;
+      padding: 0.4rem;
       color: white;
       text-transform: uppercase;
     }
@@ -120,7 +117,6 @@ const Container = styled.div`
     }
   }
   .current-user {
-    background-color: #0d0d30;
     display: flex;
     flex-grow: 1;
     justify-content: center;
