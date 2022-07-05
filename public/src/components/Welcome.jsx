@@ -31,10 +31,17 @@ const Container = styled.div`
   align-items: center;
   color: white;
   flex-direction: column;
+  .chat-header{
+    display: flex;
+    align-content: flex-end;
+  }
   img {
     height: 20rem;
   }
   span {
     color: #4e0eff;
+  }
+  h3 {
+    text-align: center;
   }
 `;

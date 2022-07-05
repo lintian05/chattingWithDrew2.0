@@ -22,8 +22,7 @@ export default function Contacts({ contacts, changeChat }) {
       {currentUserImage && currentUserImage && (
         <Container>
           <div className="brand">
-            {/* <img src={Logo} alt="logo" /> */}
-            <h3>Chatting With Drew</h3>
+            <h3>{currentUserName}'s Chat Room</h3>
           </div>
           <div className="contacts">
             {contacts.map((contact, index) => {
@@ -40,9 +39,6 @@ export default function Contacts({ contacts, changeChat }) {
                       src={`data:image/svg+xml;base64,${contact.avatarImage}`}
                       alt=""
                     />
-                  </div>
-                  <div className="username">
-                    <h3>{contact.username}</h3>
                   </div>
                 </div>
               );
@@ -65,19 +61,23 @@ export default function Contacts({ contacts, changeChat }) {
   );
 }
 const Container = styled.div`
-  display: grid;
-  grid-template-rows: 10% 75% 15%;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background-color: #080420;
   .brand {
     display: flex;
+    flex-grow: .5;
+    flex-flow: wrap;
+    margin-bottom: 1rem;
+    background-color: #0d0d30;
     align-items: center;
-    gap: 1rem;
     justify-content: center;
     img {
       height: 2rem;
     }
     h3 {
+      padding: 0.6rem;
       color: white;
       text-transform: uppercase;
     }
@@ -85,6 +85,7 @@ const Container = styled.div`
   .contacts {
     display: flex;
     flex-direction: column;
+    flex-grow: 8;
     align-items: center;
     overflow: auto;
     gap: 0.8rem;
@@ -106,15 +107,11 @@ const Container = styled.div`
       display: flex;
       gap: 1rem;
       align-items: center;
+      justify-content: center;
       transition: 0.5s ease-in-out;
       .avatar {
         img {
           height: 3rem;
-        }
-      }
-      .username {
-        h3 {
-          color: white;
         }
       }
     }
@@ -122,13 +119,13 @@ const Container = styled.div`
       background-color: #9a86f3;
     }
   }
-
   .current-user {
     background-color: #0d0d30;
     display: flex;
+    flex-grow: 1;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     .avatar {
       img {
         height: 4rem;
@@ -149,4 +146,6 @@ const Container = styled.div`
       }
     }
   }
+
+  
 `;
