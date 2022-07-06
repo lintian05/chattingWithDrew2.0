@@ -48,6 +48,20 @@ module.exports.getAllUsers = async (req, res, next) => {
   }
 };
 
+module.exports.getDrew = async (req, res, next) => {
+  try {
+    const drew = await User.find({ username: "Drew" }).select([
+      "username",
+      "avatarImage",
+      "_id",
+    ]);
+    console.log("DREW", drew);
+    return res.json(drew);
+  } catch (ex) {
+    next(ex);
+  }
+};
+
 module.exports.setAvatar = async (req, res, next) => {
   try {
     const userId = req.params.id;

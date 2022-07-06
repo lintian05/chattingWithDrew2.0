@@ -7,6 +7,7 @@ import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
 
 export default function ChatContainer({ currentChat, socket }) {
+export default function ChatContainer({ currentChat, socket, currentUsername }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -19,7 +20,9 @@ export default function ChatContainer({ currentChat, socket }) {
       from: data._id,
       to: currentChat._id,
     });
-    setMessages(response.data);
+    
+    const msgs = currentUsername == "You"? response.data.filter(msg => msg.fromSelf):response.data;
+    setMessages(msgs);
   }, [currentChat]);
 
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function ChatContainer({ currentChat, socket }) {
   }, []);
 
   useEffect(() => {
-    arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
+    arrivalMessage && currentUsername != "You" && setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage]);
 
   useEffect(() => {
