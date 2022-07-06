@@ -55,10 +55,6 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
     setMessages(msgs);
-    if (currentUsername == "Drew"){
-      var audio = new Audio(Drew_Notification);
-      audio.play();
-    }
   };
 
   useEffect(() => {
