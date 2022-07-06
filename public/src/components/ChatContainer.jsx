@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
 
-export default function ChatContainer({ currentChat, socket }) {
 export default function ChatContainer({ currentChat, socket, currentUsername }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
@@ -97,7 +96,7 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
                   message.fromSelf ? "sended" : "recieved"
                 }`}
               >
-                <div className="content ">
+                <div className={message.message == "Deleted"? "deleted-content":"content"}>
                   <p>{message.message}</p>
                 </div>
               </div>
@@ -166,6 +165,16 @@ const Container = styled.div`
         @media screen and (max-width: 1080px) {
           max-width: 70%;
         }
+      }
+      .deleted-content{
+        overflow-wrap: break-word;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 1rem;
+        font-style: italic;
+        color: #d1d1d1;
+        border-style: solid;
+        border-color: #2b2b2b;
       }
     }
     .sended {
