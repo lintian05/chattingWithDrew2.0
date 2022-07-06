@@ -55,6 +55,10 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
     setMessages(msgs);
+    if (currentUsername == "Drew"){
+      var audio = new Audio(Drew_Notification);
+      audio.play();
+    }
   };
 
   useEffect(() => {
@@ -67,10 +71,6 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
 
   useEffect(() => {
     arrivalMessage && currentUsername != "You" && setMessages((prev) => [...prev, arrivalMessage]);
-    if (currentUsername != "Drew"){
-      var audio = new Audio(Drew_Notification);
-      audio.play();
-    }
   }, [arrivalMessage]);
 
   useEffect(() => {
