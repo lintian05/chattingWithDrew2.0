@@ -32,9 +32,6 @@ export default function Login() {
     if (username === "") {
       toast.error("Username and Password is required.", toastOptions);
       return false;
-    } else if (password === "") {
-      toast.error("Username and Password is required.", toastOptions);
-      return false;
     }
     return true;
   };
