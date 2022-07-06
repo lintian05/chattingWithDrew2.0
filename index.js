@@ -39,8 +39,8 @@ const server = app.listen(process.env.PORT || 8080, () =>
 );
 const io = socket(server, {
   cors: {
-    // origin: "http://www.chattingwithdrew.com/sockets",
-    origin: "http://localhost:3000",
+    origin: "http://www.chattingwithdrew.com/sockets",
+    // origin: "http://localhost:3000",
     credentials: true,
   },
 });
