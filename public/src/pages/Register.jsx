@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerRoute } from "../utils/APIRoutes";
@@ -17,6 +16,7 @@ export default function Register() {
     theme: "dark",
   };
   const [values, setValues] = useState({
+    adminPassword: "",
     username: "",
     password: "",
   });
@@ -32,7 +32,14 @@ export default function Register() {
   };
 
   const handleValidation = () => {
-    const { password, username} = values;
+    const { adminPassword, password, username} = values;
+    if (adminPassword != "Tian") {
+      toast.error(
+        "You are not Drew. Please return to the login page and wait for Drew to open your chat.",
+        toastOptions
+      );
+      return false;
+    }
     if (username.length < 3) {
       toast.error(
         "Username should be greater than 3 characters.",
@@ -41,13 +48,14 @@ export default function Register() {
       return false;
     }
 
+
     return true;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      const { username, password } = values;
+      const { adminPassword, username, password } = values;
       const { data } = await axios.post(registerRoute, {
         username,
         password,
@@ -74,6 +82,12 @@ export default function Register() {
             {/* <img src={Logo} alt="logo" /> */}
             <h1>Chatting With Drew</h1>
           </div>
+          <input
+            type="text"
+            placeholder="Admin Password"
+            name="adminPassword"
+            onChange={(e) => handleChange(e)}
+          />
           <input
             type="text"
             placeholder="Username"
