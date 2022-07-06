@@ -8,6 +8,7 @@ import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
 
 
 export default function ChatContainer({ currentChat, socket, currentUsername }) {
+  const [displayMessages, setDisplayMessages] = useState([]);
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -54,7 +55,17 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
     setMessages(msgs);
+    setDisplayMessages(msgs);
   };
+
+  const getNextMsg = async () =>{
+    if (displayMessages.length < messages.length){
+      const msgs = [...displayMessages];
+      const newMsg = messages.at(displayMessages.length);
+      msgs.push({fromSelf: newMsg.fromSelf, message: newMsg.message});
+      setDisplayMessages(msgs);
+    }
+  }
 
   useEffect(() => {
     if (socket.current) {
@@ -65,12 +76,12 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
   }, []);
 
   useEffect(() => {
-    arrivalMessage && currentUsername != "You" && setMessages((prev) => [...prev, arrivalMessage]);
+    arrivalMessage && currentUsername != "You" && setMessages((prev) => [...prev, arrivalMessage]) && setDisplayMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [displayMessages]);
 
   return (
     <Container>
@@ -89,7 +100,7 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
         <Logout />
       </div>
       <div className="chat-messages">
-        {messages.map((message) => {
+        {displayMessages.map((message) => {
           return (
             <div ref={scrollRef} key={uuidv4()}>
               <div
@@ -105,7 +116,7 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
           );
         })}
       </div>
-      <ChatInput handleSendMsg={handleSendMsg} />
+      <ChatInput handleSendMsg={handleSendMsg} getNextMsg={getNextMsg} />
     </Container>
   );
 }
