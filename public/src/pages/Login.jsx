@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginRoute } from "../utils/APIRoutes";
@@ -44,7 +43,9 @@ export default function Login() {
         username,
         password,
       });
-      if (data.status === false) {
+      if (data.status === false && username === "You" && password === "inhereyouwillfindfriendship") {
+        toast.error("Your chat has not been opened by Drew yet. Please check back later!", toastOptions);
+      } else if (data.status === false) {
         toast.error(data.msg, toastOptions);
       }
       if (data.status === true) {
@@ -80,9 +81,6 @@ export default function Login() {
             onChange={(e) => handleChange(e)}
           />
           <button type="submit">Log In</button>
-          <span>
-            Don't have an account ? <Link to="/register">Create One.</Link>
-          </span>
         </form>
       </FormContainer>
       <ToastContainer />

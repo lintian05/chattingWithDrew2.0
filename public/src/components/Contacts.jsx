@@ -22,7 +22,7 @@ export default function Contacts({ contacts, changeChat }) {
       {currentUserImage && currentUserImage && (
         <Container>
           <div className="brand">
-            <h3>{currentUserName}'s Chat Room</h3>
+            {currentUserName === "You"?  <h3>Your Chat Room</h3> : <h3>{currentUserName}'s Chat Room</h3> } 
           </div>
           <div className="contacts">
             {contacts.map((contact, index) => {
