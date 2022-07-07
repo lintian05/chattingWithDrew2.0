@@ -71,8 +71,6 @@ const Container = styled.div`
   align-items: center;
   background-color: #131324;
   .container {
-    height: 85vh;
-    width: 85vw;
     margin: 1rem;
     display: flex;
     justify-content: center;
