@@ -75,8 +75,10 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
     }
   }, []);
 
-  useEffect(() => {
-    arrivalMessage && currentUsername != "You" && setMessages((prev) => [...prev, arrivalMessage]) && setDisplayMessages((prev) => [...prev, arrivalMessage]);
+  useEffect(async () => {
+    if(arrivalMessage && currentUsername != "You") {
+      setDisplayMessages([...messages, arrivalMessage]);};
+      setMessages((prev) => [...prev, arrivalMessage]); 
   }, [arrivalMessage]);
 
   useEffect(() => {
