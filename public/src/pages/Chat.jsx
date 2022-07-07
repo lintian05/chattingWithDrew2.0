@@ -35,13 +35,14 @@ export default function Chat() {
   useEffect(async () => {
     if (currentUser) {
       if (currentUser.isAvatarImageSet) {
-        const data = await axios.get(currentUser.username === "Drew"? `${allUsersRoute}/${currentUser._id}`:`${drewRoute}`); //currentUser.username != "You"? `${drewRoute}`: //
+        const data = await axios.get(currentUser.username === "Drew"? `${allUsersRoute}/${currentUser._id}`:`${drewRoute}`);
         setContacts(data.data);
       } else {
         navigate("/setAvatar");
       }
     }
   }, [currentUser]);
+
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
@@ -49,7 +50,7 @@ export default function Chat() {
     <>
       <Container>
         <div className="container">
-          <Contacts contacts={contacts} changeChat={handleChatChange} />
+          <Contacts contacts={contacts} changeChat={handleChatChange}/>
           {currentChat === undefined ? (
             <Welcome />
           ) : (
@@ -70,6 +71,8 @@ const Container = styled.div`
   align-items: center;
   background-color: #131324;
   .container {
+    height: 85vh;
+    width: 85vw;
     margin: 1rem;
     display: flex;
     justify-content: center;
@@ -77,8 +80,9 @@ const Container = styled.div`
     background-color: #00000076;
     // display: grid;
     // grid-template-columns: 25% 75%;
-    // @media screen and (min-width: 720px) and (max-width: 1080px) {
-    //   grid-template-columns: 35% 65%;
+    // @media screen and (max-width: 320px) {
+    //   height: 85vh;
+    //   width: 85vw;
     // }
   }
 `;

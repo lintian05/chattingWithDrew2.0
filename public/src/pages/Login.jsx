@@ -43,7 +43,7 @@ export default function Login() {
         username,
         password,
       });
-      if (data.status === false && username === "You" && password === "inhereyouwillfindfriendship") {
+      if (data.status === false && username === "You" && password === "friend") {
         toast.error("Your chat has not been opened by Drew yet. Please check back later!", toastOptions);
       } else if (data.status === false) {
         toast.error(data.msg, toastOptions);
