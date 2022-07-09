@@ -56,7 +56,7 @@ export default function Chat() {
     <>
       <Container>
         <div className="container">
-          {currentUser.username === "You"? (<div> </div>):(<Contacts contacts={contacts} changeChat={handleChatChange}/>)}
+          {currentUser?.username === "You"? (<div> </div>):(<Contacts contacts={contacts} changeChat={handleChatChange}/>)}
           {currentChat === undefined ? (
             <Welcome />
           ) : (
@@ -81,12 +81,10 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     height: 100%;
+    @media screen and (min-width: 320px) and (max-width: 768px) and (min-height: 550px){
+      height: 60%;
+    }
     background-color: #00000076;
-    // display: grid;
-    // grid-template-columns: 25% 75%;
-    // @media screen and (max-width: 320px) {
-    //   height: 85vh;
-    //   width: 85vw;
-    // }
+
   }
 `;

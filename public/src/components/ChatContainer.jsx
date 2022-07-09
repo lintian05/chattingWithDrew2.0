@@ -127,11 +127,12 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  height: 100%;
+  grid-template-rows: 15% 70% 15%;
   gap: 0.1rem;
   overflow: hidden;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
-    grid-template-rows: 15% 70% 15%;
+  @media screen and (min-width: 320px) and (max-width: 768px) and (min-height: 550px) {
+    grid-template-rows: 20% 60% 20%;
   }
   .chat-header {
     display: flex;
