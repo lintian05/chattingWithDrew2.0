@@ -15,16 +15,6 @@ export default function Contacts({ contacts, changeChat}) {
 
   }, []);
 
-  // useEffect(() => {
-  //   if (currentUserName){
-  //     if (currentUserName == "You"){
-  //       const drewChat = {_id: '62c2ede389792bb39ed1823a', username: 'Drew', avatarImage: 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdm…pZHRoOjIuOTk5OXB4O3N0cm9rZTojMDAwOyIvPjwvc3ZnPg=='};
-  //       changeChat(drewChat);
-  //     }
-  //   }
-  // }, [currentUserName]);
-
-
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);

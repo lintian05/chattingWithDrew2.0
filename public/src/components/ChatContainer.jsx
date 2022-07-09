@@ -56,7 +56,6 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
     const newMsgs = msgs;
-    // const newMsgs = currentUsername === "You"? msgs.filter(msg => msg.fromSelf) : msgs;
     setMessages(newMsgs);
     setDisplayMessages(newMsgs);
   };
