@@ -83,6 +83,7 @@ const Container = styled.div`
     height: 100%;
     @media screen and (min-width: 320px) and (max-width: 768px) and (min-height: 550px){
       height: 60%;
+      position: fixed;
     }
     background-color: #00000076;
 
