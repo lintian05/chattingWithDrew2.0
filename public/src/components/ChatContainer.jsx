@@ -13,6 +13,7 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
+
   useEffect(async () => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -22,7 +23,7 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
       to: currentChat._id,
     });
     
-    const msgs = currentUsername == "You"? response.data.filter(msg => msg.fromSelf):response.data;
+    const msgs = currentUsername === "You"? response.data.filter(msg => msg.fromSelf):response.data;
     setMessages(msgs);
   }, [currentChat]);
 
@@ -54,8 +55,10 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
 
     const msgs = [...messages];
     msgs.push({ fromSelf: true, message: msg });
-    setMessages(msgs);
-    setDisplayMessages(msgs);
+    const newMsgs = msgs;
+    // const newMsgs = currentUsername === "You"? msgs.filter(msg => msg.fromSelf) : msgs;
+    setMessages(newMsgs);
+    setDisplayMessages(newMsgs);
   };
 
   const getNextMsg = async () =>{
@@ -76,9 +79,9 @@ export default function ChatContainer({ currentChat, socket, currentUsername }) 
   }, []);
 
   useEffect(async () => {
-    if(arrivalMessage && currentUsername != "You") {
-      setDisplayMessages([...messages, arrivalMessage]);};
-      setMessages((prev) => [...prev, arrivalMessage]); 
+    if(arrivalMessage && currentUsername !== "You") {
+      setDisplayMessages([...messages, arrivalMessage]);
+      setMessages((prev) => [...prev, arrivalMessage]); };
   }, [arrivalMessage]);
 
   useEffect(() => {

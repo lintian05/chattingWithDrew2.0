@@ -55,7 +55,6 @@ module.exports.getDrew = async (req, res, next) => {
       "avatarImage",
       "_id",
     ]);
-    console.log("DREW", drew);
     return res.json(drew);
   } catch (ex) {
     next(ex);
